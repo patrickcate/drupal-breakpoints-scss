@@ -17,6 +17,18 @@ function jsonToScssVars (obj) {
   return scssVars
 }
 
+function jsonToScssMap (obj) {
+  let scssVars = '$drupal-breakpoints: (\n'
+
+  for (let i in obj) {
+    scssVars += '\'' + obj[i].label + '\': \'' + obj[i].mediaQuery + '\',\n'
+  }
+
+  scssVars += ');\n'
+
+  return scssVars
+}
+
 howCanWeSleepWhileOurBedsAreBurning.read = function (path) {
   let rs = stream.Readable()
   let breakpoints = YAML.load(path)
